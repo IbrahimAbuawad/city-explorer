@@ -11,7 +11,7 @@ export class App extends Component {
       locationName: '',
       data: '',
       show: true,
-      hidden: true
+      visi: false
 
     }
   }
@@ -36,17 +36,17 @@ export class App extends Component {
         data: req.data[0]
       })
 
-    
+
 
       this.setState({
-        hidden: false
+        visi: true
       })
     }
 
 
-    catch {
+    catch (err) {
 
-      console.log('iam false');
+      console.log('iam false', err);
       this.setState({
         show: false
       })
@@ -94,12 +94,16 @@ export class App extends Component {
                 Explore
         </Button>
             </Form>
-            <p className={this.state.hidden ? 'hidden' : 'show'}>
-            {this.state.data.display_name} is located at {this.state.data.lat} by {this.state.data.lon}
-            </p>
+            {this.state.visi &&
+              <>
+                <p className={this.state.hidden ? 'hidden' : 'show'}>
+                  {this.state.data.display_name} is located at {this.state.data.lat} by {this.state.data.lon}
+                </p>
 
-            <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.d75d43b43c0dacdf9e557f8243d5faee&center=${this.state.data.lat},${this.state.data.lon}`} 
-            alt='map' className={this.state.hidden ? 'hidden' : 'show'} />
+
+                <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.d75d43b43c0dacdf9e557f8243d5faee&center=${this.state.data.lat},${this.state.data.lon}`}
+                  alt='map' />
+              </>}
           </main>
           <footer>
             <p>Ibrahim Abu-awad &copy;</p>
