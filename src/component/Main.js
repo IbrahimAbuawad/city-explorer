@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Error from './Error';
 import Map from './Map';
+import Weather from './Weather';
 
 
 export class Main extends Component {
@@ -12,12 +13,15 @@ export class Main extends Component {
                     <Error goback={this.props.goback} />
                 }
                 {this.props.show === true &&
-                    <Map 
-                    getlocation={this.props.getlocation} 
-                    getdata={this.props.getdata} 
-                    data={this.props.data} 
-                    visi={this.props.visi} 
-                    size={this.props.size}/>
+                    <>
+                        <Map
+                            getlocation={this.props.getlocation}
+                            getdata={this.props.getdata}
+                            data={this.props.data}
+                            visi={this.props.visi}
+                            size={this.props.size} />
+                        <Weather weatherD={this.props.weatherD}/>
+                    </>
                 }
             </>
         )
