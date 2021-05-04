@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import Footer from './component/Footer';
 import Header from './component/Header';
 import Main from './component/Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 export class App extends Component {
 
@@ -13,7 +16,9 @@ export class App extends Component {
       locationName: '',
       data: '',
       show: true,
-      visi: false
+      visi: false,
+      weatherD: []
+
 
     }
   }
@@ -30,12 +35,11 @@ export class App extends Component {
   getData = async (e) => {
     try {
       e.preventDefault();
-      console.log(process.env.REACT_APP_LOCATION_API);
-
       const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API}&q=${this.state.locationName}&format=json`;
-      const myAPI = `${process.env.REACT_APP_HOST}/about`;
+
+      const myAPI = `${process.env.REACT_APP_HOST}/weather`;
       const showAPI = await axios.get(myAPI);
-      console.log(showAPI.data);
+
       const req = await axios.get(locationAPI);
       this.setState({
         data: req.data[0]
@@ -44,7 +48,8 @@ export class App extends Component {
 
 
       this.setState({
-        visi: true
+        visi: true,
+        weatherD: showAPI.data
       })
     }
 
@@ -68,15 +73,16 @@ export class App extends Component {
     return (
       <>
         <Header />
-        <Main 
-        getlocation={this.getLocation} 
-        getdata={this.getData} 
-        visi={this.state.visi} 
-        data={this.state.data} 
-        show={this.state.show} 
-        goback={this.goBack}
-        size={this.state.size}/>
-        <Footer  />
+        <Main
+          getlocation={this.getLocation}
+          getdata={this.getData}
+          visi={this.state.visi}
+          data={this.state.data}
+          show={this.state.show}
+          goback={this.goBack}
+          size={this.state.size}
+          weatherD={this.state.weatherD} />
+        <Footer />
       </>
     )
   }
