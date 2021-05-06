@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Error from './Error';
 import Map from './Map';
 import Weather from './Weather';
+import Movies from './Movies';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Card from 'react-bootstrap/Card';
 
 
 export class Main extends Component {
@@ -20,7 +23,9 @@ export class Main extends Component {
                             data={this.props.data}
                             visi={this.props.visi}
                             size={this.props.size} />
-                        <Weather weatherD={this.props.weatherD}/>
+                        <Weather weatherD={this.props.weatherD} />
+                        <CardGroup><Movies moviesD={this.props.moviesD}/></CardGroup>
+                         
                     </>
                 }
             </>
