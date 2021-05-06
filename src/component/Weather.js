@@ -5,30 +5,33 @@ export class Weather extends Component {
 
     render() {
         return (
-            <>
-                <Table striped bordered hover responsive className="w-50 tableDate">
+            <div id='centerDiv'>
 
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                </Table>
-                {this.props.weatherD.map(element => {
-                    return <>
-                        <Table striped bordered hover responsive className='w-50 tableDate tableData'  >
+                <>
+                    <Table striped bordered hover responsive className="w-50 tableDate">
 
-                            <tbody>
-                                <tr>
-                                    <td>{element.date}</td>
-                                    <td>{element.description}</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </>
-                })}
-            </>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                    </Table>
+                    {this.props.weatherD.map(element => {
+                        return <>
+                            <Table striped bordered hover responsive className='w-50 tableDate tableData'  >
+
+                                <tbody>
+                                    <tr>
+                                        <td>{element.date}</td>
+                                        <td>{element.description}</td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </>
+                    })}
+                </>
+            </div>
         )
     }
 }

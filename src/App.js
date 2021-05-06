@@ -17,7 +17,8 @@ export class App extends Component {
       data: '',
       show: true,
       visi: false,
-      weatherD: []
+      weatherD: [],
+      moviesD:[]
 
 
     }
@@ -32,26 +33,36 @@ export class App extends Component {
     })
   }
 
+
   getData = async (e) => {
     try {
       e.preventDefault();
       const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API}&q=${this.state.locationName}&format=json`;
 
-      const myAPI = `${process.env.REACT_APP_HOST}/weather`;
-      const showAPI = await axios.get(myAPI);
 
       const req = await axios.get(locationAPI);
       this.setState({
         data: req.data[0]
       })
 
+      const myAPI = `${process.env.REACT_APP_HOST}/weather?lat=${this.state.data.lat}&lon=${this.state.data.lon}`;
+      const showAPI = await axios.get(myAPI);
+
+//..................................................................................................................................
+
+      const myMovieAPI = `${process.env.REACT_APP_HOST}/movie?query=${this.state.locationName}&limit=8`;
+      const showMovieAPI = await axios.get(myMovieAPI);
 
 
       this.setState({
         visi: true,
-        weatherD: showAPI.data
+        weatherD: showAPI.data,
+        moviesD: showMovieAPI.data
       })
+
     }
+     
+    
 
 
     catch (err) {
@@ -81,7 +92,8 @@ export class App extends Component {
           show={this.state.show}
           goback={this.goBack}
           size={this.state.size}
-          weatherD={this.state.weatherD} />
+          weatherD={this.state.weatherD} 
+          moviesD={this.state.moviesD}/>
         <Footer />
       </>
     )
