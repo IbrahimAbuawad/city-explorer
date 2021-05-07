@@ -4,7 +4,6 @@ import Map from './Map';
 import Weather from './Weather';
 import Movies from './Movies';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Card from 'react-bootstrap/Card';
 
 
 export class Main extends Component {

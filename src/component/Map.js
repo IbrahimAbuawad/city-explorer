@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Image, Col } from 'react-bootstrap';
+import { Form, Button, Image} from 'react-bootstrap';
 
 export class Map extends Component {
     constructor(props) {
